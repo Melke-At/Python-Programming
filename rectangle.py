@@ -4,5 +4,3 @@ a = w * l
 print("area of the rectangle =", a )
 p = 2*l + 2*w
 print("perimeter of the rectangle =", p )
-
-
