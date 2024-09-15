@@ -6,7 +6,7 @@ def dice_roll(x):
         dice = random.randint(1, x)
         roll = dice
         print(roll)
-dice_roll(21)
+dice_roll(15)
 
 
 
