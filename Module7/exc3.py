@@ -10,7 +10,7 @@ connection = mysql.connector.connect(
 
 )
 def get_airport_by_ident(ICAO):
-    sql = f"select*from airport where ident = {ICAO}"
+    sql = f"select*from airport where ident = '{ICAO}'"
 
     cursor = connection.cursor()
     cursor.execute(sql)
@@ -19,7 +19,7 @@ def get_airport_by_ident(ICAO):
 code = input('type ICAO code: ')
 airport = get_airport_by_ident(code)
 if airport is not None:
-    print(f'{airport["name"]} is located in {airport["municipality"]} in {airport["iso_country"]}')
+    print(f'{airport[0]} is located in {airport[0]} in {airport[0]}')
 else:
     print('airport not found')
 
