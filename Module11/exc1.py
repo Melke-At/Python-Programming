@@ -24,12 +24,12 @@ class Magazine(Publication):
 
 
     def print_information(self):
-        print("Megazine Information: ")
+        print("Magazine Information: ")
         super().print_information()
         print("chief editor", self.chief_editor)
 
 publications = []
-publications.append(Magazine("Donald Duck", "Aki Hyyppa"))
+publications.append(Magazine("Donald Duck", "Aki Hyyppä"))
 publications.append(Book("Compartment No.6", "Rosa Liksom",192))
 
 for pubs in publications:
