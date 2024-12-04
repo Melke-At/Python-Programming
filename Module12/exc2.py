@@ -1,35 +1,40 @@
 import requests
 
-def get_weather(api_key, municipality):
-    base_url = "https://api.openweathermap.org/data/2.5/weather"
 
+def get_weather(municipality, api_key):
+
+    url = "https://api.openweathermap.org/data/2.5/weather"
+    api_key = "485e52c34109b95876954c9316a77af9"
+
+   # request ="https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}"
+
+
+    # Parameters for the request, including the municipality name and API key
     params = {
         "q": municipality,
         "appid": api_key
     }
 
-    try:
-        response = requests.get(base_url, params=params)
-        data = response.json()
 
-        if response.status_code == 200:
-            weather_description = data['weather'][0]['description']
-            temperature_kelvin = data['main']['temp']
+    response = requests.get(url, params=params)
 
-            temperature_celsius = temperature_kelvin - 273.15
+    if response.status_code == 200:
+        weather_data = response.json()
 
-            print(f"Weather in {municipality}: {weather_description.capitalize()}")
-            print(f"Temperature: {temperature_celsius:.2f}°C")
-        else:
-            print(f"Error: {data['message'].capitalize()}")
+        weather_description = weather_data['weather'][0]['description']
+        temperature_kelvin = weather_data['main']['temp']
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
+        temperature_celsius = temperature_kelvin - 273.15
+
+        print(f"Weather: {weather_description.capitalize()}")
+        print(f"Temperature: {temperature_celsius:.2f}°C")
+    else:
+        print("Failed to retrieve weather data. Please check the municipality name or API key.")
+
 
 
 if __name__ == "__main__":
-    municipality_name = input("Enter the name of the municipality: ")
+    api_key = "YOUR_API_KEY"
+    municipality = input("Enter the name of a municipality: ")
 
-    api_key = "your_api_key_here"
-
-    get_weather(api_key, municipality_name)
+    get_weather(municipality, api_key)

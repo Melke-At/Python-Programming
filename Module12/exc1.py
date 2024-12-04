@@ -1,24 +1,15 @@
 import requests
 
 
-def fetch_random_chuck_norris_joke():
+def fetch_chuck_norris_joke():
     url = "https://api.chucknorris.io/jokes/random"
+    response = requests.get(url)
 
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-
+    if response.status_code == 200:
         joke_data = response.json()
-        joke = joke_data.get("value")
-
-        if joke:
-            print("Here's a Chuck Norris joke for you:")
-            print(joke)
-        else:
-            print("No joke found.")
-
-    except requests.exceptions.RequestException as e:
-        print("Error fetching joke:", e)
+        print(joke_data['value'])
+    else:
+        print("Failed to retrieve joke.")
 
 
-fetch_random_chuck_norris_joke()
+fetch_chuck_norris_joke()
